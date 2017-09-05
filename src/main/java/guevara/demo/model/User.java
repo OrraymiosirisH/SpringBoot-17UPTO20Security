@@ -1,7 +1,9 @@
 package guevara.demo.model;
 
-import javax.management.relation.Role;
+
 import javax.persistence.*;
+import java.util.Collection;
+
 
 @Entity
 @Table(name="USER_DATA")
@@ -32,7 +34,7 @@ public class User {
 
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
-    private CollectionTable<Role> roles;
+    private Collection<Role> roles;
 
 
     public long getId() {
@@ -91,11 +93,11 @@ public class User {
         this.username = username;
     }
 
-    public CollectionTable<Role> getRoles() {
+    public Collection<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(CollectionTable<Role> roles) {
+    public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
 }
