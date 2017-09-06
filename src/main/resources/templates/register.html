@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../css/clean-blog.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div th:replace="base1 :: navlinkss"></div>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>PLease fill out the information below!</p>
+            <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+            <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+            <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+            <form role="form"th:action="@{/register}" th:object="${newuser}"method="post" name="sentMessage">
+                <p><input type="hidden" th:field="*{id}"/></p>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Name</label>
+                        <input th:field="*{firstName}" type="text" class="form-control" placeholder="Name">
+                        <p class="help-block text-danger"></p>
+                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span><br />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Last Name</label>
+                        <input th:field="*{lastName}" type="text" class="form-control" placeholder="Last Name">
+                        <p class="help-block text-danger"></p>
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span><br />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Email Address</label>
+                        <input th:field="*{email}" type="email" class="form-control" placeholder="Email Address" >
+                        <p class="help-block text-danger"></p>
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span><br />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>User Name</label>
+                        <input th:field="*{username}" type="username" class="form-control" placeholder="Username" >
+                        <p class="help-block text-danger"></p>
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span><br />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Password</label>
+                        <input th:field="*{password}" type="password" class="form-control" placeholder="Password" >
+                        <p class="help-block text-danger"></p>
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span><br />
+                    </div>
+                </div>
+
+
+                <br>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-secondary" id="sendMessageButton">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+
+
+<div th:replace="base1 :: footer"></div>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/popper/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/clean-blog.min.js"></script>
+
+</body>
+</html>

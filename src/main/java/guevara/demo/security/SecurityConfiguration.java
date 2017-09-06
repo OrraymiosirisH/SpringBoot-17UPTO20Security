@@ -31,16 +31,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/", "/h2-console/**").permitAll()
+                .antMatchers("/","/register","/css/**","/js/**","/img/**","/vendor/**","/scss/**").permitAll()
+                .antMatchers("/admin")
+                .access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll().permitAll()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))// we don't need an extra page for logout this will do the trick
+                .logoutSuccessUrl("/login").permitAll().permitAll()// we're telling it to go back to the login page after logout
                 .and()
-                .httpBasic();
+                .httpBasic();// this allows to login using the password and user in the console, it doesn't matter if we take it out
                 http
                         .csrf().disable();
         http

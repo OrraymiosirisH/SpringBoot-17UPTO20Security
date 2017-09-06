@@ -2,7 +2,9 @@ package guevara.demo.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
+@Entity
 public class Role {
 @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +15,11 @@ public class Role {
 
 @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
     private Collection<User> users;
+
+    public Role(){
+
+        this.users=new HashSet<User>();
+    }
 
 
     public long getId() {
@@ -38,4 +45,11 @@ public class Role {
     public void setUsers(Collection<User> users) {
         this.users = users;
     }
+
+    public void addUser(User usr)
+    {
+        users.add(usr);
+    }
+
+
 }

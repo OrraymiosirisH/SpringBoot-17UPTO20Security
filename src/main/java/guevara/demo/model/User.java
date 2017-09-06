@@ -3,6 +3,7 @@ package guevara.demo.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 
 @Entity
@@ -36,6 +37,9 @@ public class User {
     @JoinTable(joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
     private Collection<Role> roles;
 
+    public  User(){
+        this.roles=new HashSet<Role>();
+    }
 
     public long getId() {
         return id;
@@ -100,4 +104,13 @@ public class User {
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
+
+    public void addRole(Role rl)
+    {
+        roles.add(rl);
+    }
+
+
+
 }
